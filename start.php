@@ -243,6 +243,15 @@ function group_tools_pagesetup() {
 					));
 				}
 			}
+
+			// subpermissions management
+			if ($page_owner->canEdit()) {
+				elgg_register_menu_item("page", array(
+					"name" => "subpermissions",
+					"text" => elgg_echo("groups:subpermissions"),
+					"href" => "groups/subpermissions/" . $page_owner->getGUID(),
+					));
+			}
 			
 			// group mail options
 			if ($page_owner->canEdit() && (elgg_get_plugin_setting("mail", "group_tools") == "yes")) {

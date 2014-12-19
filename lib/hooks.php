@@ -90,6 +90,13 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 				
 				include(dirname(dirname(__FILE__)) . "/pages/groups/membershipreq.php");
 				break;
+			case "subpermissions": 
+				$result = false;
+
+				set_input("group_guid", $page[1]);
+
+				include(dirname(dirname(__FILE__)) . "/pages/groups/subpermissions.php");
+				break;
 			case "invite":
 				$result = false;
 				
@@ -576,6 +583,17 @@ function group_tools_access_write_handler($hook, $type, $return_value, $params) 
 		$result[GROUP_TOOLS_GROUP_ACCESS_DEFAULT] = elgg_echo("group_tools:default:access:group");
 	}
 	
+
+
+	$page_owner = elgg_get_page_owner_entity();
+	if ($page_owner instanceof ElggGroup && $page_owner->subpermissions) {
+		$subpermissions = array_intersect(get_access_array(), unserialize($page_owner->subpermissions));
+		foreach ($subpermissions as $subpermission) {
+			$access_collection = get_access_collection($subpermission);
+			$result[$subpermission] = "Subgroup " . $access_collection->name;
+		}
+	}
+
 	return $result;
 }
 
