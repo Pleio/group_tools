@@ -178,6 +178,13 @@ elgg.group_tools.init = function() {
 		
 		return false;
 	});
+
+
+	// subpermission add
+	$(".group-tools-subpermission-add .elgg-button-action").live("click", function() {
+
+		return false;
+	})
 }
 
 //register init hook

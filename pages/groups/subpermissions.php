@@ -13,16 +13,32 @@ elgg_set_page_owner_guid($guid);
 
 $group = get_entity($guid);
 
-$title = elgg_echo("groups:subpermissions");
+$title = elgg_echo("group_tools:subpermissions");
 
 if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
+	
 	// change page title	
 	elgg_push_breadcrumb(elgg_echo("groups"), "groups/all");
 	elgg_push_breadcrumb($group->name, $group->getURL());
 	elgg_push_breadcrumb($title);
 
-	$acls = unserialize($group->subpermissions);
-	/*
+	elgg_register_menu_item('title', array(
+		'name' => 'test',
+		'href' => 'test/',
+		'text' => elgg_echo('group_tools:subpermissions:add'),
+		'link_class' => 'elgg-button elgg-button-action',
+	));
+
+
+	$subpermissions = unserialize($group->subpermissions);
+
+	foreach($subpermissions as $subpermission_id) {
+		$content .= elgg_view('group_tools/subpermissions/list', array(
+			'subpermission_id' => $subpermission_id
+		));
+	}
+
+/*
 	$access_collection = create_access_collection("Onderzoek PP: Test Collection", 5866);
 	var_dump($access_collection);
 	$group->subpermissions = serialize(array($access_collection));
@@ -31,19 +47,6 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 	//var_dump(get_write_access_array());
 	//exit();
 	
-	foreach($acls as $aclid) {
-		$acl = get_access_collection($aclid);
-		$members = get_members_of_access_collection($aclid);
-
-		$content .= "<h2>" . $acl->name . "</h2>";
-
-		$content .= "<ul>";
-		foreach ($members as $member) {
-			$content .= "<li>" . $member->name . "</li>";
-		}
-		$content .= "</ul>";
-	}
-
 	//add_user_to_access_collection(279, $aclid);	
 	//remove_user_from_access_collection(279, $aclid);
 
