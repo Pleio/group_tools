@@ -44,10 +44,14 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 
 	$subpermissions = unserialize($group->subpermissions);
 
-	foreach($subpermissions as $subpermission_id) {
-		$content .= elgg_view('group_tools/subpermissions/list', array(
-			'subpermission_id' => $subpermission_id
-		));
+	if (!empty($subpermissions)) {
+		foreach($subpermissions as $subpermission_id) {
+			$content .= elgg_view('group_tools/subpermissions/list', array(
+				'subpermission_id' => $subpermission_id
+			));
+		}
+	} else {
+		$content = elgg_echo("group_tools:subpermissions:nosubpermissions");
 	}
 
 } else {

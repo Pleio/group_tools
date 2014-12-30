@@ -472,7 +472,8 @@ To visit the group please click on the following link:
 	'group_tools:subpermissions:nouser' => "User is not a member of the parent group.",
 	'group_tools:subpermissions:delete:cantdelete' => "Could not delete the subgroup.",
 	'group_tools:subpermissions:delete:confirm' => "Sure you want to delete this subgroup?",
-	'group_tools:subpermissions:delete_member' => "Delete from subgroup"
+	'group_tools:subpermissions:delete_member' => "Delete from subgroup",
+	'group_tools:subpermissions:nosubpermissions' => "No subgroups are available."
 );
 
 add_translation("en", $english);
