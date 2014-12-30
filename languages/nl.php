@@ -312,5 +312,23 @@ Het formaat moet zijn: weergave naam;e-mail adres. Er mag geen kopregel zijn.',
   'group_tools:cleanup:members:explain' => 'Op de groep profiel pagina staat op de aangegeven plaats een lijst met leden van de groep. Je kunt deze verbergen.',
   'group_tools:cleanup:featured' => 'Toon de aangeraden groepen in het menu',
   'group_tools:cleanup:featured:explain' => 'Je kunt ervoor kiezen om op de groep profiel pagina een lijst met aangeraden groepen te tonen op de aangegeven plaats.',
+
+  // subpermissions
+  'group_tools:subpermissions' => "Subgroepen",
+  'group_tools:subpermissions:add' => "Subgroep toevoegen",
+  'group_tools:subpermissions:add_member' => "Lid toevoegen",
+  'group_tools:subpermissions:add:created' => "Subgroep is aangemaakt.",
+  'group_tools:subpermissions:activate' => "Subgroepen activeren",
+  'group_tools:subpermissions:add:noname' => "Subgroep naam is verplicht.",
+  'group_tools:subpermissions:nosubpermission' => "Deze subgroep bestaat niet.",
+  'group_tools:subpermissions:nouser' => "Gebruiker is geen lid van de groep.",
+  'group_tools:subpermissions:delete:cantdelete' => "Kan deze subgroep niet verwijderen.",
+  'group_tools:subpermissions:member' => "Naam",
+  'group_tools:subpermissions:name' => "Naam",
+  'group_tools:subpermissions:notenabled' => "Subgroepen zijn niet ingeschakeld.",
+  'group_tools:subpermission' => "Subgroep",
+  'group_tools:subpermissions:delete:confirm' => "Weet je zeker dat je deze subgroep wil verwijderen?",
+  'group_tools:subpermissions:delete_member' => "Verwijder uit subgroep",
+
 );
 add_translation("nl", $language);

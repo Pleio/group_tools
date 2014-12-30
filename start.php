@@ -163,6 +163,16 @@ function group_tools_init() {
 	elgg_register_action("group_tools/order_groups", dirname(__FILE__) . "/actions/order_groups.php", "admin");
 	
 	elgg_register_action("discussion/toggle_status", dirname(__FILE__) . "/actions/discussion/toggle_status.php");
+
+	// subpermissions
+	elgg_register_action("group_tools/subpermissions/add", dirname(__FILE__) . "/actions/subpermissions/add.php");
+	elgg_register_action("group_tools/subpermissions/delete", dirname(__FILE__) . "/actions/subpermissions/delete.php");
+	elgg_register_action("group_tools/subpermissions/add_member", dirname(__FILE__) . "/actions/subpermissions/add_member.php");
+	elgg_register_action("group_tools/subpermissions/delete_member", dirname(__FILE__) . "/actions/subpermissions/delete_member.php");
+
+	add_group_tool_option("subpermissions", elgg_echo("group_tools:subpermissions:activate"), false);
+	elgg_register_event_handler("leave", "group", "group_tools_subpermissions_leave");
+	elgg_register_event_handler("delete", "group", "group_tools_subpermissions_delete");
 }
 
 /**
@@ -245,10 +255,10 @@ function group_tools_pagesetup() {
 			}
 
 			// subpermissions management
-			if ($page_owner->canEdit()) {
+			if ($page_owner->canEdit() && $page_owner->subpermissions_enable == "yes") {
 				elgg_register_menu_item("page", array(
 					"name" => "subpermissions",
-					"text" => elgg_echo("groups:subpermissions"),
+					"text" => elgg_echo("group_tools:subpermissions"),
 					"href" => "groups/subpermissions/" . $page_owner->getGUID(),
 					));
 			}

@@ -456,6 +456,23 @@ To visit the group please click on the following link:
 	
 	// group member export
 	'group_tools:member_export:title_button' => "Export members",
+
+	// subpermissions
+	'group_tools:subpermissions' => "Subgroups",
+	'group_tools:subpermissions:add' => "Add subgroup",
+	'group_tools:subpermissions:add_member' => "Add subgroup member",
+	'group_tools:subpermissions:member' => "Name",
+	'group_tools:subpermissions:name' => "Name",
+	'group_tools:subpermissions:notenabled' => "Subgroups not enabled.",
+	'group_tools:subpermission' => "Subgroup",	
+	'group_tools:subpermissions:activate' => "Enable subgroups",
+	'group_tools:subpermissions:add:created' => "Subgroup created.",
+	'group_tools:subpermissions:add:noname' => "Subgroup name is required.",
+	'group_tools:subpermissions:nosubpermission' => "This subgroup does not exist.",
+	'group_tools:subpermissions:nouser' => "User is not a member of the parent group.",
+	'group_tools:subpermissions:delete:cantdelete' => "Could not delete the subgroup.",
+	'group_tools:subpermissions:delete:confirm' => "Sure you want to delete this subgroup?",
+	'group_tools:subpermissions:delete_member' => "Delete from subgroup"
 );
 
 add_translation("en", $english);

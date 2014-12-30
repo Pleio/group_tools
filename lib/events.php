@@ -254,3 +254,65 @@ function group_tools_membership_request($event, $type, $relationship) {
 		}
 	}
 }
+
+/**
+ * Event to remove the subgroup permissions, when a user leaves the group
+ *
+ * @param string $event  leave
+ * @param string $type   group
+ * @param array  $params array with the user and the group
+ *
+ * @return void|boolean
+ */
+function group_tools_subpermissions_leave($event, $type, $params) {
+	if (empty($params) | !is_array($params)) {
+		return false;
+	}
+
+	if (!array_key_exists("group", $params) | !array_key_exists("user", $params)) {
+		return false;
+	}
+
+	$group = $params["group"];
+	$user = $params["user"];
+
+	if (!$group instanceof ElggGroup | !$user instanceof ElggUser) {
+		return false;
+	}
+
+	if (!$group->subpermissions) {
+		return true;
+	}
+
+	$subpermissions = unserialize($group->subpermissions);
+	$to_remove = array_intersect($subpermissions, get_access_array($user->guid));
+
+	foreach ($to_remove as $access_collection) {
+		remove_user_from_access_collection($user->guid, $access_collection);
+	}
+
+	return true;
+}
+
+/**
+ * Event to remove the subgroup permissions, when a group is deleted
+ *
+ * @param string $event  delete
+ * @param string $type   group
+ * @param array  $params array with the user and the group
+ *
+ * @return void|boolean
+ */
+function group_tools_subpermissions_delete($event, $type, $group) {
+	if (!$group->subpermissions) {
+		return true;
+	}
+
+	$subpermissions = unserialize($group->subpermissions);
+	
+	foreach ($subpermissions as $subpermission) {
+		delete_access_collection($subpermission);
+	}
+
+	return true;
+}

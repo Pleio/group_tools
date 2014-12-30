@@ -21,6 +21,7 @@ Features
 	- import users from csv
 - group listing
 	- alfabetical
+- allow the creation of subgroups
 
 Group default access
 -----------------------

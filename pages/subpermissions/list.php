@@ -13,7 +13,18 @@ elgg_set_page_owner_guid($guid);
 
 $group = get_entity($guid);
 
+if ($group->subpermissions_enable != "yes") {
+	register_error(elgg_echo("group_tools:subpermissions:notenabled"));
+	forward(REFERER);
+}
+
 $title = elgg_echo("group_tools:subpermissions");
+
+elgg_load_js("lightbox");
+elgg_load_css("lightbox");
+
+elgg_load_js('elgg.autocomplete');
+elgg_load_js('jquery.ui.autocomplete.html');
 
 if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 	
@@ -23,8 +34,9 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 	elgg_push_breadcrumb($title);
 
 	elgg_register_menu_item('title', array(
-		'name' => 'test',
-		'href' => 'test/',
+		'name' => '',
+		'href' => '/groups/subpermissions_add/' . $guid,
+		'id' => 'group-tools-subpermissions-add',
 		'text' => elgg_echo('group_tools:subpermissions:add'),
 		'link_class' => 'elgg-button elgg-button-action',
 	));
@@ -37,18 +49,6 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 			'subpermission_id' => $subpermission_id
 		));
 	}
-
-/*
-	$access_collection = create_access_collection("Onderzoek PP: Test Collection", 5866);
-	var_dump($access_collection);
-	$group->subpermissions = serialize(array($access_collection));
-	$group->save();*/
-
-	//var_dump(get_write_access_array());
-	//exit();
-	
-	//add_user_to_access_collection(279, $aclid);	
-	//remove_user_from_access_collection(279, $aclid);
 
 } else {
 	$content = elgg_echo("groups:noaccess");

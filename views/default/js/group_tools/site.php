@@ -139,6 +139,29 @@ elgg.group_tools.toggle_special_state = function(state, group_guid) {
 	});
 }
 
+elgg.group_tools.add_subpermission = function(event) {
+	event.preventDefault();
+	
+	$.fancybox({
+		href: $(this).attr("href"),
+		titleShow: false
+	});
+
+}
+
+elgg.group_tools.add_subpermission_member = function(event) {
+	event.preventDefault();
+	
+	$.fancybox({
+		href: $(this).attr("href"),
+		titleShow: false,
+		onComplete: function() {
+			elgg.autocomplete.init();
+		}
+	});
+
+}
+
 elgg.group_tools.init = function() {
 	// admin tranfser
 	$('#group_tools_admin_transfer_form').submit(elgg.group_tools.admin_transfer_confirm);
@@ -171,20 +194,15 @@ elgg.group_tools.init = function() {
 
 	// suggested groups join clicks
 	$(".group-tools-suggested-groups .elgg-button-action").live("click", function() {
-
 		elgg.action($(this).attr("href"));
-
 		$(this).css("visibility", "hidden");
-		
 		return false;
 	});
 
 
 	// subpermission add
-	$(".group-tools-subpermission-add .elgg-button-action").live("click", function() {
-
-		return false;
-	})
+	$("#group-tools-subpermissions-add").live("click", elgg.group_tools.add_subpermission);
+	$(".group-tools-subpermissions-add-member").live("click", elgg.group_tools.add_subpermission_member);
 }
 
 //register init hook

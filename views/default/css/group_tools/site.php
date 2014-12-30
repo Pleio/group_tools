@@ -99,3 +99,11 @@
 #group-tools-related-groups-form input.elgg-input-autocomplete {
 	width: 80%;
 }
+
+.elgg-button-action.group-tools-button-right {
+	background: #000;
+	text-shadow: none;
+	color: white;
+	margin: 0;
+	float: right;
+}

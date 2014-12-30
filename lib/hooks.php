@@ -83,6 +83,11 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 					
 				include(dirname(dirname(__FILE__)) . "/pages/groups/search.php");
 				break;
+			case "livesearch_members":
+				$result = false;
+					
+				include(dirname(dirname(__FILE__)) . "/pages/groups/livesearch_members.php");
+				break;
 			case "requests":
 				$result = false;
 				
@@ -95,8 +100,20 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 
 				set_input("group_guid", $page[1]);
 
-				include(dirname(dirname(__FILE__)) . "/pages/groups/subpermissions.php");
+				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/list.php");
 				break;
+			case "subpermissions_add":
+				$result = false;
+				set_input("group_guid", $page[1]);
+
+				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/add.php");
+				break;		
+			case "subpermissions_add_member":
+				$result = false;
+				set_input("group_guid", $page[1]);
+
+				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/add_member.php");
+				break;		
 			case "invite":
 				$result = false;
 				
@@ -590,7 +607,7 @@ function group_tools_access_write_handler($hook, $type, $return_value, $params) 
 		$subpermissions = array_intersect(get_access_array(), unserialize($page_owner->subpermissions));
 		foreach ($subpermissions as $subpermission) {
 			$access_collection = get_access_collection($subpermission);
-			$result[$subpermission] = "Subgroup " . $access_collection->name;
+			$result[$subpermission] = elgg_echo("group_tools:subpermission") . ": " . $access_collection->name;
 		}
 	}
 
