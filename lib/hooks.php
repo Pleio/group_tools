@@ -83,10 +83,12 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 					
 				include(dirname(dirname(__FILE__)) . "/pages/groups/search.php");
 				break;
-			case "livesearch_members":
+			case "livesearch":
 				$result = false;
-					
-				include(dirname(dirname(__FILE__)) . "/pages/groups/livesearch_members.php");
+				
+				set_input("group_guid", $page[1]);	
+
+				include(dirname(dirname(__FILE__)) . "/pages/groups/livesearch.php");
 				break;
 			case "requests":
 				$result = false;
