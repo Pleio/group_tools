@@ -20,6 +20,8 @@ if ($group->subpermissions_enable != "yes") {
 
 $title = elgg_echo("group_tools:subpermissions");
 
+elgg_push_context("subpermissions");
+
 elgg_load_js("lightbox");
 elgg_load_css("lightbox");
 
@@ -66,3 +68,5 @@ $params = array(
 $body = elgg_view_layout("content", $params);
 
 echo elgg_view_page($title, $body);
+
+elgg_pop_context();
