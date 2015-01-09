@@ -475,7 +475,7 @@ To visit the group please click on the following link:
 	'group_tools:subpermissions:delete:cantdelete' => "Could not delete the subgroup.",
 	'group_tools:subpermissions:delete:confirm' => "Sure you want to delete this subgroup?",
 	'group_tools:subpermissions:delete_member' => "Delete from subgroup",
-	'group_tools:subpermissions:nosubpermissions' => "No subgroups are available."
+	'group_tools:subpermissions:nosubpermissions' => "No subgroups are available.",
 
 	// group bulk delete
 	'group_tools:action:bulk_delete:success' => "The selected groups were deleted",
