@@ -373,18 +373,6 @@ function group_tools_menu_user_hover_handler($hook, $type, $return_value, $param
 				}
 			}
 		}
-
-		if (elgg_in_context('subpermissions')) {
-			$delete_member = array(
-				'name' => 'delete_from_subgroup',
-				'text' => elgg_echo("group_tools:subpermissions:delete_member"),
-				'href' => "action/group_tools/subpermissions/delete_member?member_guid=" . $user->guid . "&group_guid=" . get_input('group_guid') . "&access_guid=" . get_input('access_guid'),
-				'confirm' => elgg_echo('deleteconfirm'),
-				'is_action' => true
-			);
-
-			$result[] = ElggMenuItem::factory($delete_member);
-		}
 	}
 	
 	return $result;
