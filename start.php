@@ -169,6 +169,7 @@ function group_tools_init() {
 	elgg_register_action("group_tools/subpermissions/add", dirname(__FILE__) . "/actions/subpermissions/add.php");
 	elgg_register_action("group_tools/subpermissions/delete", dirname(__FILE__) . "/actions/subpermissions/delete.php");
 	elgg_register_action("group_tools/subpermissions/manage_members", dirname(__FILE__) . "/actions/subpermissions/manage_members.php");
+	elgg_register_action("group_tools/subpermissions/export", dirname(__FILE__) . "/actions/subpermissions/export.php");
 
 	add_group_tool_option("subpermissions", elgg_echo("group_tools:subpermissions:activate"), false);
 	elgg_register_event_handler("leave", "group", "group_tools_subpermissions_leave");

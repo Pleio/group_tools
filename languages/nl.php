@@ -334,7 +334,8 @@ Het formaat moet zijn: weergave naam;e-mail adres. Er mag geen kopregel zijn.',
   'group_tools:subpermissions:delete:confirm' => "Weet je zeker dat je deze subgroep wil verwijderen?",
   'group_tools:subpermissions:delete_member' => "Verwijder uit subgroep",
   'group_tools:subpermissions:nosubpermissions' => "Er zijn geen subgroepen beschikbaar.",
-  'group_tools:subpermissions:select' => "Selecteer"
+  'group_tools:subpermissions:select' => "Selecteer",
+  'group_tools:subpermissions:export' => "Export",
 
 );
 add_translation("nl", $language);

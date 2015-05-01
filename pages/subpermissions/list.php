@@ -34,12 +34,20 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 	elgg_push_breadcrumb($title);
 
 	elgg_register_menu_item('title', array(
-		'name' => '',
+		'name' => 'group_tools_subpermissions_add',
 		'href' => '/groups/subpermissions_add/' . $guid,
 		'id' => 'group-tools-subpermissions-add',
 		'text' => elgg_echo('group_tools:subpermissions:add'),
 		'link_class' => 'elgg-button elgg-button-action',
 	));
+
+	elgg_register_menu_item('title', array(
+		'name' => 'group_tools_subpermissions_export',
+		'href' => '/action/group_tools/subpermissions/export/?group_guid=' . $group->guid,
+		'text' => elgg_echo('group_tools:subpermissions:export'),
+		'link_class' => 'elgg-button elgg-button-action',
+		'is_action' => true
+	));	
 
 	$subpermissions = unserialize($group->subpermissions);
 

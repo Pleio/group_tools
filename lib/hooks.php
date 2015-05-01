@@ -115,7 +115,7 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 				set_input("group_guid", $page[1]);
 
 				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/manage_members.php");
-				break;		
+				break;
 			case "invite":
 				$result = false;
 				
