@@ -462,7 +462,7 @@ To visit the group please click on the following link:
 	// subpermissions
 	'group_tools:subpermissions' => "Subgroups",
 	'group_tools:subpermissions:add' => "Add subgroup",
-	'group_tools:subpermissions:add_member' => "Add subgroup member",
+	'group_tools:subpermissions:manage_members' => "Manage members",
 	'group_tools:subpermissions:member' => "Name",
 	'group_tools:subpermissions:name' => "Name",
 	'group_tools:subpermissions:notenabled' => "Subgroups not enabled.",
@@ -476,6 +476,7 @@ To visit the group please click on the following link:
 	'group_tools:subpermissions:delete:confirm' => "Sure you want to delete this subgroup?",
 	'group_tools:subpermissions:delete_member' => "Delete from subgroup",
 	'group_tools:subpermissions:nosubpermissions' => "No subgroups are available.",
+	'group_tools:subpermissions:select' => "Select",
 
 	// group bulk delete
 	'group_tools:action:bulk_delete:success' => "The selected groups were deleted",

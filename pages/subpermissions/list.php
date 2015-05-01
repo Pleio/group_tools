@@ -22,11 +22,9 @@ $title = elgg_echo("group_tools:subpermissions");
 
 elgg_push_context("subpermissions");
 
+elgg_load_js('elgg.friendspicker');
 elgg_load_js("lightbox");
 elgg_load_css("lightbox");
-
-elgg_load_js('elgg.autocomplete');
-elgg_load_js('jquery.ui.autocomplete.html');
 
 if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 	
@@ -42,7 +40,6 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 		'text' => elgg_echo('group_tools:subpermissions:add'),
 		'link_class' => 'elgg-button elgg-button-action',
 	));
-
 
 	$subpermissions = unserialize($group->subpermissions);
 
@@ -65,8 +62,20 @@ $params = array(
 	"title" => $title,
 	"filter" => "",
 );
-$body = elgg_view_layout("content", $params);
 
-echo elgg_view_page($title, $body);
+if(elgg_is_xhr()){
+	echo "<div style='width:500px; height:300px;'>";
+	echo elgg_view_title($title);
+	echo $content;
+	echo "</div>";
+} else {
+	$params = array(
+		"content" => $content,
+		"title" => $title,
+		"filter" => "",
+	);
+	$body = elgg_view_layout("content", $params);	
+	echo elgg_view_page($title, $body);
+}
 
 elgg_pop_context();

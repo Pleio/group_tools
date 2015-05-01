@@ -110,11 +110,11 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 
 				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/add.php");
 				break;		
-			case "subpermissions_add_member":
+			case "subpermissions_manage_members":
 				$result = false;
 				set_input("group_guid", $page[1]);
 
-				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/add_member.php");
+				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/manage_members.php");
 				break;		
 			case "invite":
 				$result = false;

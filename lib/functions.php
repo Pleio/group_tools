@@ -849,3 +849,21 @@ function group_tools_get_membership_information(ElggUser $user, ElggGroup $group
 	
 	return $result;
 }
+
+/**
+ * Get members of an access collection and sort them by name
+ *
+ * @param int  $access_id id of the access collection
+ *
+ * @return array
+ */
+function group_tools_get_members_of_access_collection($access_id) {
+	$members = get_members_of_access_collection($access_id);
+
+	// sort by name
+	usort($members, function($a,$b) {
+		return strcmp($a->name, $b->name);
+	});
+
+	return $members;
+}

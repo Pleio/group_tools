@@ -320,7 +320,7 @@ Het formaat moet zijn: weergave naam;e-mail adres. Er mag geen kopregel zijn.',
   // subpermissions
   'group_tools:subpermissions' => "Subgroepen",
   'group_tools:subpermissions:add' => "Subgroep toevoegen",
-  'group_tools:subpermissions:add_member' => "Lid toevoegen",
+  'group_tools:subpermissions:manage_members' => "Leden beheren",
   'group_tools:subpermissions:add:created' => "Subgroep is aangemaakt.",
   'group_tools:subpermissions:activate' => "Subgroepen activeren",
   'group_tools:subpermissions:add:noname' => "Subgroep naam is verplicht.",
@@ -333,7 +333,8 @@ Het formaat moet zijn: weergave naam;e-mail adres. Er mag geen kopregel zijn.',
   'group_tools:subpermission' => "Subgroep",
   'group_tools:subpermissions:delete:confirm' => "Weet je zeker dat je deze subgroep wil verwijderen?",
   'group_tools:subpermissions:delete_member' => "Verwijder uit subgroep",
-  'group_tools:subpermissions:nosubpermissions' => "Er zijn geen subgroepen beschikbaar."
+  'group_tools:subpermissions:nosubpermissions' => "Er zijn geen subgroepen beschikbaar.",
+  'group_tools:subpermissions:select' => "Selecteer"
 
 );
 add_translation("nl", $language);

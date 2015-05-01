@@ -46,6 +46,36 @@ elgg.group_tools.mail_all_members = function() {
 	elgg.group_tools.mail_update_recipients();
 }
 
+elgg.group_tools.mail_subpermission = function() {	
+	$.fancybox({
+		href: elgg.normalize_url('/groups/subpermissions/' + elgg.page_owner.guid),
+		titleShow: false,
+		onComplete: function() {
+			$(".group-tools-subpermissions-email-select").click(function() {
+				var members = $(this).data("members") + ''; // enforce string type
+				if (members) {
+					var members = $.map(members.split(","), function(val,i) {
+						return parseInt(val);
+					});
+				} else {
+					var members = [];
+				}
+
+				$('#group_tools_mail_member_selection input[name="user_guids[]"]').each(function() {
+					if (members.indexOf(parseInt(this.value)) !== -1) {
+						$(this).attr('checked', 'checked');
+					} else {
+						$(this).removeAttr('checked');
+					}
+				});
+
+				elgg.group_tools.mail_update_recipients();
+				parent.$.fancybox.close();
+			});
+		}
+	});
+}
+
 elgg.group_tools.mail_update_recipients = function() {
 	var count = $('#group_tools_mail_member_selection input[name="user_guids[]"]:checked').length;
 
@@ -146,20 +176,15 @@ elgg.group_tools.add_subpermission = function(event) {
 		href: $(this).attr("href"),
 		titleShow: false
 	});
-
 }
 
-elgg.group_tools.add_subpermission_member = function(event) {
+elgg.group_tools.manage_subpermission_members = function(event) {
 	event.preventDefault();
 	
 	$.fancybox({
 		href: $(this).attr("href"),
-		titleShow: false,
-		onComplete: function() {
-			elgg.autocomplete.init();
-		}
+		titleShow: false
 	});
-
 }
 
 elgg.group_tools.init = function() {
@@ -202,7 +227,7 @@ elgg.group_tools.init = function() {
 
 	// subpermission add
 	$("#group-tools-subpermissions-add").live("click", elgg.group_tools.add_subpermission);
-	$(".group-tools-subpermissions-add-member").live("click", elgg.group_tools.add_subpermission_member);
+	$(".group-tools-subpermissions-manage-members").live("click", elgg.group_tools.manage_subpermission_members);
 }
 
 //register init hook

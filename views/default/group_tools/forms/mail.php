@@ -23,6 +23,11 @@ $form_data .= "</div>";
 $form_data .= "<div id='group_tools_mail_member_options'>";
 $form_data .= elgg_view("input/button", array("class" => "elgg-button-action", "value" => elgg_echo("group_tools:clear_selection"), "onclick" => "elgg.group_tools.mail_clear_members();"));
 $form_data .= elgg_view("input/button", array("class" => "elgg-button-action", "value" => elgg_echo("group_tools:all_members"), "onclick" => "elgg.group_tools.mail_all_members();"));
+
+if ($group->subpermissions_enable == "yes") {
+	$form_data .= elgg_view("input/button", array("class" => "elgg-button-action", "value" => elgg_echo("group_tools:subpermission"), "onclick" => "elgg.group_tools.mail_subpermission();"));
+}
+
 $form_data .= "<br />";
 $form_data .= "</div>";
 
