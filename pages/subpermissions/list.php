@@ -41,13 +41,15 @@ if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
 		'link_class' => 'elgg-button elgg-button-action',
 	));
 
-	elgg_register_menu_item('title', array(
-		'name' => 'group_tools_subpermissions_export',
-		'href' => '/action/group_tools/subpermissions/export/?group_guid=' . $group->guid,
-		'text' => elgg_echo('group_tools:subpermissions:export'),
-		'link_class' => 'elgg-button elgg-button-action',
-		'is_action' => true
-	));	
+	if (elgg_get_plugin_setting("member_export", "group_tools") == "yes") {
+		elgg_register_menu_item('title', array(
+			'name' => 'group_tools_subpermissions_export',
+			'href' => '/action/group_tools/subpermissions/export/?group_guid=' . $group->guid,
+			'text' => elgg_echo('group_tools:subpermissions:export'),
+			'link_class' => 'elgg-button elgg-button-action',
+			'is_action' => true
+		));
+	}
 
 	$subpermissions = unserialize($group->subpermissions);
 
