@@ -867,3 +867,26 @@ function group_tools_get_members_of_access_collection($access_id) {
 
 	return $members;
 }
+
+/**
+ * Get admins of a group
+ *
+ * @param ElggGroup $group the group
+ *
+ * @return array
+ */
+function group_tools_get_admins(ElggGroup $group) {
+	$options = array(
+		"relationship" => "group_admin",
+		"relationship_guid" => $group->getGUID(),
+		"inverse_relationship" => true,
+		"type" => "user",
+		"limit" => false,
+		"wheres" => array("e.guid <> " . $group->owner_guid),
+	);
+
+	$admins = elgg_get_entities_from_relationship($options);
+	array_unshift($admins, $group->getOwnerEntity());
+
+	return $admins;
+}

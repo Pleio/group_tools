@@ -194,6 +194,13 @@ $language = array (
 
 Om de groep te bezoeken klik op onderstaande link:
 %s',
+  'group_tools:notify:newadmin:subject' => "Een nieuwe beheerder is toegevoegd aan %s",
+  'group_tools:notify:newadmin:message' => "Hallo,
+
+%s is toegevoegd als groepsbeheerder aan %s.
+
+Om de groep te bezoeken klik op de onderstaande link:
+%s",
   'widgets:group_invitations:title' => 'Groep uitnodigingen',
   'widgets:group_invitations:description' => 'Toont de uitstaande groep uitnodigingen voor de huidige gebruiker',
   'widgets:group_members:title' => 'Groep leden',

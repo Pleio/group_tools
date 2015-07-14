@@ -123,6 +123,15 @@ You can also go to All site groups -> Group invitations and enter the following 
 To visit the group please click on the following link:
 %s",
 
+	// group new admin notification
+	'group_tools:notify:newadmin:subject' => "A new group administrator has been added to %s",
+	'group_tools:notify:newadmin:message' => "Hi,
+
+%s has been appointed as a new group administrator aan %s.
+
+To visit the group please click on the following link:
+%s",
+
 	// group edit tabbed
 	'group_tools:group:edit:profile' => "Group profile / tools",
 	'group_tools:group:edit:other' => "Other options",
