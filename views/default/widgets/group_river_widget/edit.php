@@ -35,32 +35,14 @@ if (!empty($registered_entities)) {
 $filter_selector = elgg_view("input/dropdown", array("name" => "params[activity_filter]", "value" => $widget->activity_filter, "options_values" => $filter_contents));
 
 if ($widget->context != "groups") {
-	//the user of the widget
-	$owner = $widget->getOwnerEntity();
+	$user = elgg_get_logged_in_user_entity();
+	$groups = $user->getGroups();
 	
-	// get all groups
-	$options = array(
-		"type" => "group",
-		"limit" => false,
-		"joins" => array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid"),
-		"order_by" => "ge.name ASC"
-	);
-	
-	if (elgg_instanceof($owner, "user")) {
-		$options["relationship"] = "member";
-		$options["relationship_guid"] = $owner->getGUID();
+	foreach ($groups as $group) {
+		$group_options_values[$group->name] = $group->getGUID();
 	}
-	
-	$batch = new ElggBatch("elgg_get_entities_from_relationship", $options);
-	$batch->rewind(); // needed so the next call succeeds
-	if ($batch->valid()) {
-		
-		// get groups
-		$group_options_values = array();
-		foreach ($batch as $group) {
-			$group_options_values[$group->name] = $group->getGUID();
-		}
-		
+
+	if (count($group_options_values) > 0) {		
 		// make options
 		echo "<div>";
 		echo elgg_echo("widgets:group_river_widget:edit:num_display");
@@ -90,3 +72,4 @@ if ($widget->context != "groups") {
 	echo $filter_selector;
 	echo "</div>";
 }
+
