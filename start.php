@@ -256,7 +256,7 @@ function group_tools_pagesetup() {
 			}
 
 			// subpermissions management
-			if ($page_owner->canEdit() && $page_owner->subpermissions_enable == "yes") {
+			if ($page_owner->subpermissions_enable == "yes") {
 				elgg_register_menu_item("page", array(
 					"name" => "subpermissions",
 					"text" => elgg_echo("group_tools:subpermissions"),

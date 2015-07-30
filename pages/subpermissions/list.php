@@ -26,29 +26,31 @@ elgg_load_js('elgg.friendspicker');
 elgg_load_js("lightbox");
 elgg_load_css("lightbox");
 
-if (!empty($group) && elgg_instanceof($group, "group") && $group->canEdit()) {
-	
-	// change page title	
+if (!empty($group) && elgg_instanceof($group, "group") && $group->isMember()) {
+
+	// change page title
 	elgg_push_breadcrumb(elgg_echo("groups"), "groups/all");
 	elgg_push_breadcrumb($group->name, $group->getURL());
 	elgg_push_breadcrumb($title);
 
-	elgg_register_menu_item('title', array(
-		'name' => 'group_tools_subpermissions_add',
-		'href' => '/groups/subpermissions_add/' . $guid,
-		'id' => 'group-tools-subpermissions-add',
-		'text' => elgg_echo('group_tools:subpermissions:add'),
-		'link_class' => 'elgg-button elgg-button-action',
-	));
-
-	if (elgg_get_plugin_setting("member_export", "group_tools") == "yes") {
+	if ($group->canEdit()) {
 		elgg_register_menu_item('title', array(
-			'name' => 'group_tools_subpermissions_export',
-			'href' => '/action/group_tools/subpermissions/export/?group_guid=' . $group->guid,
-			'text' => elgg_echo('group_tools:subpermissions:export'),
+			'name' => 'group_tools_subpermissions_add',
+			'href' => '/groups/subpermissions_add/' . $guid,
+			'id' => 'group-tools-subpermissions-add',
+			'text' => elgg_echo('group_tools:subpermissions:add'),
 			'link_class' => 'elgg-button elgg-button-action',
-			'is_action' => true
 		));
+
+		if (elgg_get_plugin_setting("member_export", "group_tools") == "yes") {
+			elgg_register_menu_item('title', array(
+				'name' => 'group_tools_subpermissions_export',
+				'href' => '/action/group_tools/subpermissions/export/?group_guid=' . $group->guid,
+				'text' => elgg_echo('group_tools:subpermissions:export'),
+				'link_class' => 'elgg-button elgg-button-action',
+				'is_action' => true
+			));
+		}
 	}
 
 	$subpermissions = unserialize($group->subpermissions);
