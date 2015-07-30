@@ -181,6 +181,15 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 					}
 				}
 				break;
+			case "members":
+				$result = false;
+
+				if (isset($page[1])) {
+					set_input("group_guid", $page[1]);
+				}
+
+				include(dirname(dirname(__FILE__)) . "/pages/groups/members.php");
+				break;
 			default:
 				// check if we have an old group profile link
 				if (isset($page[0]) && is_numeric($page[0])) {

@@ -6,6 +6,7 @@
  */
 
 $group = elgg_extract("entity", $vars);
+$entity_type = elgg_extract("entity_type", $vars);
 
 if (!empty($group) && elgg_instanceof($group, "group")) {
 	if ($group->getPrivateSetting("group_tools:cleanup:search") != "yes") {
@@ -15,7 +16,8 @@ if (!empty($group) && elgg_instanceof($group, "group")) {
 			"method" => "get",
 			"disable_security" => true,
 		), $vars);
-		
+
 		echo elgg_view_module("aside", elgg_echo("groups:search_in_group"), $body);
+
 	}
 }
