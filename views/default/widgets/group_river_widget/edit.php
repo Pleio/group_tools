@@ -36,7 +36,7 @@ $filter_selector = elgg_view("input/dropdown", array("name" => "params[activity_
 
 if ($widget->context != "groups") {
 	$user = elgg_get_logged_in_user_entity();
-	$groups = $user->getGroups();
+	$groups = $user->getGroups("", 50);
 	
 	foreach ($groups as $group) {
 		$group_options_values[$group->name] = $group->getGUID();
