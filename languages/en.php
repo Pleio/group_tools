@@ -180,6 +180,10 @@ To visit the group please click on the following link:
 	'group_tools:cleanup:my_status' => "Hide the My Status sidebar",
 	'group_tools:cleanup:my_status:explain' => "In the sidebar on the group profile page there is an item which shows you your current membership status and some other status information. You can choose to hide this.",
 
+	// group restrict discissions
+	'group_tools:restrict_discussions:title' => "Restrict the creation of discussions",
+	'group_tools:restrict_discussions:description' => "This switch allows you to restrict the creation of discussions to group administrators.",
+
 	// group default access
 	'group_tools:default_access:title' => "Group default access",
 	'group_tools:default_access:description' => "Here you can control what the default access of new content in your group should be.",
@@ -314,6 +318,9 @@ To visit the group please click on the following link:
 	
 	// group fix auto_join
 	'group_tools:action:fix_auto_join:success' => "Group membership fixed: %s new members, %s were already a member and %s failures",
+
+	// restrict discussions
+	'group_tools:actions:restrict_discussions:success' => 'The restrict discussions setting is saved succesfully.',	
 
 	// group cleanup
 	'group_tools:actions:cleanup:success' => "The cleanup settings were saved successfully",

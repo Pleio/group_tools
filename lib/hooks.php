@@ -34,6 +34,34 @@ function group_tools_multiple_admin_can_edit_hook($hook, $type, $return_value, $
 	return $result;
 }
 
+function group_tools_container_permissions_check_hook($hook, $type, $return_value, $params) {
+	$result = $return_value;
+
+	if (!isset($params['container'])) {
+		return $result;
+	}
+
+	if (!$params['container'] instanceof ElggGroup) {
+		return $result;
+	}
+
+	if (!isset($params['subtype']) | $params['subtype'] !== 'groupforumtopic') {
+		return $result;
+	}
+
+	$group = $params['container'];
+
+	if ($group->getPrivateSetting("group_tools:restrict_discussions:enabled") !== "yes") {
+		return $result;
+	}
+
+	if ($group->canEdit()) {
+		return $result;
+	} else {
+		return false;
+	}
+}
+
 /**
  * Take over the groups page handler in some cases
  *
@@ -230,7 +258,6 @@ function group_tools_menu_title_handler($hook, $type, $return_value, $params) {
 			if (!empty($result) && is_array($result)) {
 				
 				foreach ($result as $menu_item) {
-					
 					switch ($menu_item->getName()) {
 						case "groups:joinrequest":
 							if (check_entity_relationship($user->getGUID(), "membership_request", $page_owner->getGUID())) {
@@ -329,6 +356,12 @@ function group_tools_menu_title_handler($hook, $type, $return_value, $params) {
 				}
 			}
 			
+		}
+	} elseif (elgg_in_context('discussion') && $page_owner instanceof ElggGroup) {
+		foreach ($result as $key => $item) {
+			if ($item->getName() == "add" && !$page_owner->canWriteToContainer(0, 'object', 'groupforumtopic')) {
+				unset($result[$key]);
+			}
 		}
 	}
 	

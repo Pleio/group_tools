@@ -34,6 +34,8 @@ function group_tools_init() {
 	elgg_register_plugin_hook_handler("register", "menu:user_hover", "group_tools_menu_user_hover_handler");
 	elgg_register_plugin_hook_handler("register", "menu:entity", "group_tools_menu_entity_handler");
 	elgg_register_plugin_hook_handler("register", "menu:filter", "group_tools_menu_discussion_filter_handler");
+
+	elgg_register_plugin_hook_handler("container_permissions_check", "object", "group_tools_container_permissions_check_hook");
 	
 	if (elgg_get_plugin_setting("multiple_admin", "group_tools") == "yes") {
 		// add group tool option
@@ -88,6 +90,9 @@ function group_tools_init() {
 	// group default access
 	elgg_extend_view("groups/edit", "group_tools/forms/default_access");
 	
+	// restrict discussions side menu
+	elgg_extend_view("groups/edit", "group_tools/forms/restrict_discussions", 475);
+
 	// group notifications
 	elgg_extend_view("groups/edit", "group_tools/forms/notifications", 375);
 	
@@ -145,6 +150,7 @@ function group_tools_init() {
 	elgg_register_action("group_tools/mail", dirname(__FILE__) . "/actions/mail.php");
 	elgg_register_action("group_tools/profile_widgets", dirname(__FILE__) . "/actions/profile_widgets.php");
 	elgg_register_action("group_tools/cleanup", dirname(__FILE__) . "/actions/cleanup.php");
+	elgg_register_action("group_tools/restrict_discussions", dirname(__FILE__) . "/actions/restrict_discussions.php");
 	elgg_register_action("group_tools/default_access", dirname(__FILE__) . "/actions/default_access.php");
 	elgg_register_action("group_tools/invite_members", dirname(__FILE__) . "/actions/invite_members.php");
 	elgg_register_action("group_tools/welcome_message", dirname(__FILE__) . "/actions/welcome_message.php");
