@@ -27,6 +27,11 @@ if ($group->subpermissions_enable != "yes") {
 }
 
 $subpermissions = unserialize($group->subpermissions);
+if (!is_array($subpermissions)) {
+    register_error(elgg_echo("group_tools:subpermissions:nosubpermission"));
+    forard(REFERER);
+}
+
 if (!in_array($access_guid, $subpermissions)) {
 	register_error(elgg_echo("group_tools:subpermissions:nosubpermission"));
 	forward(REFERER);
@@ -42,7 +47,9 @@ $member_guids = array_intersect($group_member_guids, $member_guids);
 
 // add new members
 $access_member_guids = get_members_of_access_collection($access_guid, true);
-if ($access_member_guids == false) $access_member_guids = array();
+if ($access_member_guids == false) {
+	$access_member_guids = array();
+}
 
 foreach (array_diff($member_guids, $access_member_guids) as $guid) {
 	add_user_to_access_collection($guid, $access_guid);

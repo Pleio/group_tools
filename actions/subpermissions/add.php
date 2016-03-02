@@ -33,8 +33,10 @@ $id = create_access_collection($name, $group->guid);
 
 if ($group->subpermissions) {
 	$subpermissions = unserialize($group->subpermissions);
-} else {
-	$subpermissions = array();
+}
+
+if (!is_array($subpermissions)) {
+    $subpermissions = array();
 }
 
 array_push($subpermissions, $id);

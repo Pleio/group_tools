@@ -8,7 +8,7 @@ $members = group_tools_get_members_of_access_collection($subpermission_id);
 
 <div class="elgg-module elgg-module-info">
 	<div class="elgg-head">
-		<?php 
+		<?php
 			// email dialog
 			$data_members = array();
 			foreach ($members as $member) { $data_members[] = $member->guid; }
@@ -16,7 +16,6 @@ $members = group_tools_get_members_of_access_collection($subpermission_id);
 			if (elgg_is_xhr()) {
 				echo elgg_view('output/url', array(
 					"text" => elgg_echo("group_tools:subpermissions:select"),
-					"onclick" => "",
 					"data-members" => implode(',', $data_members),
 					"class" => "elgg-button-action group-tools-button-right group-tools-subpermissions-email-select"
 				));
