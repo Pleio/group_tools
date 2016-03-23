@@ -162,7 +162,6 @@ function group_tools_init() {
 	elgg_register_action("group_tools/toggle_special_state", dirname(__FILE__) . "/actions/admin/toggle_special_state.php", "admin");
 	elgg_register_action("group_tools/fix_auto_join", dirname(__FILE__) . "/actions/admin/fix_auto_join.php", "admin");
 	elgg_register_action("group_tools/notifications", dirname(__FILE__) . "/actions/admin/notifications.php", "admin");
-	elgg_register_action("group_tools/fix_acl", dirname(__FILE__) . "/actions/admin/fix_acl.php", "admin");
 	elgg_register_action("group_tools/admin/bulk_delete", dirname(__FILE__) . "/actions/admin/bulk_delete.php", "admin");
 	
 	elgg_register_action("groups/email_invitation", dirname(__FILE__) . "/actions/groups/email_invitation.php");
