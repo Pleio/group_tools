@@ -361,6 +361,8 @@ To visit the group please click on the following link:
 	'widgets:group_river_widget:view:more' => "Activity in the '%s' group",
 	'widgets:group_river_widget:view:noactivity' => "We could not find any activity.",
 
+	'widgets:group_river_widget:show_more' => "More activities",
+
 	// Group Members
 	'widgets:group_members:title' => "Group members",
   	'widgets:group_members:description' => "Shows the members of this group",

@@ -179,6 +179,7 @@ $language = array (
   'group_tools:groups:sorting:open' => 'Open',
   'group_tools:groups:sorting:closed' => 'Besloten',
   'widgets:group_river_widget:view:noactivity' => 'Geen activiteit gevonden.',
+  'widgets:group_river_widget:show_more' => 'Meer activiteiten',
   'group_tools:group:edit:profile' => 'Groep profiel / tools',
   'group_tools:group:edit:other' => 'Andere opties',
   'widgets:group_river_widget:edit:no_groups' => 'Je moet van minstens ��n groep lid zijn om gebruik te kunnen maken van deze widget',

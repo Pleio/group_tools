@@ -96,6 +96,16 @@ if (!empty($group_guid)) {
 
 	// display
 	echo $river_items;
+
+	if (count($group_guid) == 1) {
+		$more_link = elgg_view('output/url', array(
+			'href' => '/groups/activity/' . $group_guid[0],
+			'text' => elgg_echo('widget_manager:widgets:index_activity:show_more'),
+			'is_trusted' => true
+		));
+		echo "<span class=\"elgg-widget-more\">$more_link</span>";
+	}
+
 } else {
 	echo elgg_echo("widgets:group_river_widget:view:not_configured");
 }
