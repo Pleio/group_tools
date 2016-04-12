@@ -115,11 +115,7 @@ function group_tools_init() {
 		elgg_extend_view("css/elgg", "widgets/group_news/css");
 		elgg_extend_view("js/elgg", "widgets/group_news/js");
 	}
-	
-	if (elgg_is_admin_logged_in()) {
-		run_function_once("group_tools_version_1_3");
-	}
-	
+		
 	// related groups
 	add_group_tool_option("related_groups", elgg_echo("groups_tools:related_groups:tool_option"), false);
 	elgg_extend_view("groups/tool_latest", "group_tools/modules/related_groups");
@@ -296,35 +292,6 @@ function group_tools_pagesetup() {
 	
 	
 	elgg_register_admin_menu_item("administer", "group_bulk_delete", "administer_utilities");
-}
-
-/**
- * Upgrade script to fix some problem
- *
- * @return void
- */
-function group_tools_version_1_3() {
-	$dbprefix = elgg_get_config("dbprefix");
-	
-	$query = "SELECT ac.id AS acl_id, ac.owner_guid AS group_guid, er.guid_one AS user_guid
-		FROM {$dbprefix}access_collections ac
-		JOIN {$dbprefix}entities e ON e.guid = ac.owner_guid
-		JOIN {$dbprefix}entity_relationships er ON ac.owner_guid = er.guid_two
-		WHERE e.type = 'group'
-		AND er.relationship = 'member'
-		AND er.guid_one NOT IN (
-			SELECT acm.user_guid
-			FROM {$dbprefix}access_collections ac2
-			JOIN {$dbprefix}access_collection_membership acm ON ac2.id = acm.access_collection_id
-			WHERE ac2.owner_guid = ac.owner_guid
-		)";
-	
-	$data = get_data($query);
-	if (!empty($data)) {
-		foreach ($data as $row) {
-			add_user_to_access_collection($row->user_guid, $row->acl_id);
-		}
-	}
 }
 
 // default elgg event handlers
