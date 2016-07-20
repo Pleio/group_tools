@@ -154,6 +154,9 @@ function group_tools_join_site_handler($event, $type, $relationship) {
 					
 					// restore access
 					elgg_set_ignore_access($ia);
+
+					// after login, forward user to group
+					$_SESSION['last_forward_from'] = $group->getURL();
 				}
 			}
 			
