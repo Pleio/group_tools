@@ -30,6 +30,10 @@ $headers = array(
 	"email",
 	"member since (unix)",
 	"member since (YYYY-MM-DD HH:MM:SS)",
+	"user last login (unix)",
+	"user last login (YYYY-MM-DD HH:MM:SS)",
+	"user last action (unix)",
+	"user last action (YYYY-MM-DD HH:MM:SS)",
 );
 $profile_fields = elgg_get_config("profile_fields");
 if (!empty($profile_fields)) {
@@ -67,6 +71,10 @@ foreach ($members as $member) {
 	$member_since = group_tools_get_membership_information($member, $group);
 	$info[] = $member_since;
 	$info[] = date("Y-m-d G:i:s", $member_since);
+	$info[] = $member->last_login;
+	$info[] = date("Y-m-d G:i:s", $member->last_login);
+	$info[] = $member->last_action;
+	$info[] = date("Y-m-d G:i:s", $member->last_action);
 	
 	if (!empty($profile_fields)) {
 		foreach ($profile_fields as $metadata_name => $type) {
