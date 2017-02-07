@@ -350,6 +350,6 @@ Het formaat moet zijn: weergave naam;e-mail adres. Er mag geen kopregel zijn.',
   'group_tools:subpermissions:nosubpermissions' => "Er zijn geen subgroepen beschikbaar.",
   'group_tools:subpermissions:select' => "Selecteer",
   'group_tools:subpermissions:export' => "Export",
-
+  'group_tools:my_groups:description' => "Toon groepen waar je lid van bent",
 );
 add_translation("nl", $language);

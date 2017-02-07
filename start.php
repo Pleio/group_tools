@@ -66,6 +66,8 @@ function group_tools_init() {
 	
 	// register index groups widget
 	elgg_register_widget_type("index_groups", elgg_echo("groups"), elgg_echo("widgets:index_groups:description"), "index", true);
+
+	elgg_register_widget_type("my_groups", elgg_echo("groups:widget:membership"), elgg_echo("group_tools:my_groups:description"), "index");
 	
 	// quick start discussion
 	elgg_register_widget_type("start_discussion", elgg_echo("group_tools:widgets:start_discussion:title"), elgg_echo("group_tools:widgets:start_discussion:description"), "index,dashboard,groups");

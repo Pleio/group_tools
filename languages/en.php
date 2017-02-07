@@ -503,6 +503,7 @@ To visit the group please click on the following link:
 	// group bulk delete
 	'group_tools:action:bulk_delete:success' => "The selected groups were deleted",
 	'group_tools:action:bulk_delete:error' => "An error occured while deleting the groups, please try again",
+	'group_tools:my_groups:description' => "Show groups you are member of",
 );
 
 add_translation("en", $english);
