@@ -292,6 +292,7 @@ function group_tools_pagesetup() {
 	
 	
 	elgg_register_admin_menu_item("administer", "group_bulk_delete", "administer_utilities");
+	elgg_register_admin_menu_item("administer", "group_invitations", "administer_utilities");
 }
 
 // default elgg event handlers

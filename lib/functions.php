@@ -757,3 +757,53 @@ function group_tools_get_admins(ElggGroup $group) {
 
 	return $admins;
 }
+
+function group_tools_get_all_invitations() {
+	$site = elgg_get_site_entity();
+	$dbprefix = elgg_get_config("dbprefix");
+
+	$results = get_data("
+		SELECT g.guid, r.guid_two, r.time_created FROM {$dbprefix}entity_relationships r
+		LEFT JOIN {$dbprefix}entities g ON r.guid_one = g.guid
+		WHERE r.relationship = 'invited' AND g.site_guid = $site->guid
+		ORDER BY r.time_created DESC
+	");
+
+	$return = [];
+	foreach ($results as $result) {
+		$user = get_entity($result->guid_two);
+		$group = get_entity($result->guid);
+
+		if ($user && $group) {
+			$return[] = [
+				"user" => get_entity($result->guid_two),
+				"group" => get_entity($result->guid),
+				"time_created" => $result->time_created
+			];
+		}
+	}
+
+	return $return;
+}
+
+function group_tools_get_email_invitations() {
+	$results = elgg_get_annotations([
+		"annotation_names" => "email_invitation"
+	]);
+
+	$return = [];
+	foreach ($results as $result) {
+		$code = explode("|", $result->value);
+		$group = get_entity($result->entity_guid);
+
+		if ($group && $code[1]) {
+			$return[] = [
+				"email" => $code[1],
+				"group" => $group,
+				"time_created" => $result->time_created
+			];
+		}
+	}
+
+	return $return;
+}

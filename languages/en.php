@@ -7,6 +7,7 @@ $english = array(
 	'group_tools:revoke' => "Revoke",
 	'group_tools:add_users' => "Add users",
 	'group_tools:in' => "in",
+	'group_tools:for' => "for",
 	'group_tools:remove' => "Remove",
 	'group_tools:delete_selected' => "Delete selected",
 	'group_tools:clear_selection' => "Clear selection",
@@ -23,6 +24,7 @@ $english = array(
 	'group_tools:menu:mail' => "Mail Members",
 	'group_tools:menu:invitations' => "Manage invitations",
 	'admin:administer_utilities:group_bulk_delete' => "Group bulk delete",
+	'admin:administer_utilities:group_invitations' => "Group invitations",
 
 	// plugin settings
 	'group_tools:settings:invite:title' => "Group invitation options",
