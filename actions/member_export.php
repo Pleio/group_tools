@@ -21,36 +21,29 @@ if (!$group->canEdit() || (elgg_get_plugin_setting("member_export", "group_tools
 	forward(REFERER);
 }
 
+$subpermissions = unserialize($group->subpermissions);
+
 // create temp file
 $fh = tmpfile();
 
 $headers = array(
+	"guid",
 	"name",
 	"username",
 	"email",
-	"member since (unix)",
-	"member since (YYYY-MM-DD HH:MM:SS)",
-	"user last login (unix)",
-	"user last login (YYYY-MM-DD HH:MM:SS)",
-	"user last action (unix)",
-	"user last action (YYYY-MM-DD HH:MM:SS)",
+	"member since",
+	"last login",
+	"last action",
 );
-$profile_fields = elgg_get_config("profile_fields");
-if (!empty($profile_fields)) {
-	foreach ($profile_fields as $metadata_name => $type) {
-		$lan_key = "profile:" . $metadata_name;
-		$header = elgg_echo($lan_key);
-		if ($header == $lan_key) {
-			$header = $metadata_name;
-		}
-		
-		$header = html_entity_decode($header);
-		$header = str_ireplace("\"", "\"\"", str_ireplace(PHP_EOL, "", $header));
-		$headers[] = $header;
-	}
-}
-fwrite($fh, "\"" . implode("\";\"", $headers) . "\"" . PHP_EOL);
 
+$acl_members = array();
+foreach($subpermissions as $subpermission) {
+	$acl = get_access_collection($subpermission);
+	$acl_members[$subpermission] = get_members_of_access_collection($subpermission, true);
+	$headers[] = $acl->name;
+}
+
+fwrite($fh, "\"" . implode("\";\"", $headers) . "\"" . PHP_EOL);
 
 $options = array(
 	"type" => "user",
@@ -63,34 +56,25 @@ $options = array(
 $members = new ElggBatch("elgg_get_entities_from_relationship", $options);
 foreach ($members as $member) {
 	$info = array(
+		$member->guid,
 		$member->name,
 		$member->username,
 		$member->email
 	);
 	
 	$member_since = group_tools_get_membership_information($member, $group);
-	$info[] = $member_since;
 	$info[] = date("Y-m-d G:i:s", $member_since);
-	$info[] = $member->last_login;
 	$info[] = date("Y-m-d G:i:s", $member->last_login);
-	$info[] = $member->last_action;
 	$info[] = date("Y-m-d G:i:s", $member->last_action);
-	
-	if (!empty($profile_fields)) {
-		foreach ($profile_fields as $metadata_name => $type) {
-			
-			if ($type == "tags") {
-				$value = implode(", ", $member->$metadata_name);
-			} else {
-				$value = $member->$metadata_name;
-			}
-			
-			$value = html_entity_decode($value);
-			$value = str_ireplace("\"", "\"\"", str_ireplace(PHP_EOL, "", $value));
-			$info[] = $value;
+
+	foreach ($subpermissions as $subpermission) {
+		if (in_array($member->guid, $acl_members[$subpermission])) {
+			$info[] = elgg_echo("option:yes");
+		} else {
+			$info[] = elgg_echo("option:no");
 		}
 	}
-	
+
 	fwrite($fh, "\"" . implode("\";\"", $info) . "\"" . PHP_EOL);
 }
 
