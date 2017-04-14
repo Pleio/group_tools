@@ -137,7 +137,14 @@ function group_tools_route_groups_handler($hook, $type, $return_value, $params) 
 				set_input("group_guid", $page[1]);
 
 				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/add.php");
-				break;		
+				break;
+			case "subpermissions_edit":
+				$result = false;
+				set_input("group_guid", $page[1]);
+				set_input("access_guid", $page[2]);
+
+				include(dirname(dirname(__FILE__)) . "/pages/subpermissions/edit.php");
+				break;
 			case "subpermissions_manage_members":
 				$result = false;
 				set_input("group_guid", $page[1]);

@@ -334,6 +334,7 @@ Het formaat moet zijn: weergave naam;e-mail adres. Er mag geen kopregel zijn.',
   // subpermissions
   'group_tools:subpermissions' => "Subgroepen",
   'group_tools:subpermissions:add' => "Subgroep toevoegen",
+  'group_tools:subpermissions:edit' => "Subgroep wijzigen",
   'group_tools:subpermissions:manage_members' => "Leden beheren",
   'group_tools:subpermissions:add:created' => "Subgroep is aangemaakt.",
   'group_tools:subpermissions:activate' => "Subgroepen activeren",

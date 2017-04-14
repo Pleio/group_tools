@@ -483,6 +483,7 @@ To visit the group please click on the following link:
 	// subpermissions
 	'group_tools:subpermissions' => "Subgroups",
 	'group_tools:subpermissions:add' => "Add subgroup",
+	'group_tools:subpermissions:edit' => "Edit subgroup",
 	'group_tools:subpermissions:manage_members' => "Manage members",
 	'group_tools:subpermissions:member' => "Name",
 	'group_tools:subpermissions:name' => "Name",

@@ -27,7 +27,7 @@ if ($group->subpermissions_enable != "yes") {
 $subpermissions = unserialize($group->subpermissions);
 
 if (!in_array($access_guid, $subpermissions)) {
-	register_error(elgg_echo("group_tools:subpermissions:delete:nosubpermission"));
+	register_error(elgg_echo("group_tools:subpermissions:nosubpermission"));
 	forward(REFERER);
 }
 

@@ -172,6 +172,7 @@ function group_tools_init() {
 
 	// subpermissions
 	elgg_register_action("group_tools/subpermissions/add", dirname(__FILE__) . "/actions/subpermissions/add.php");
+	elgg_register_action("group_tools/subpermissions/edit", dirname(__FILE__) . "/actions/subpermissions/edit.php");
 	elgg_register_action("group_tools/subpermissions/delete", dirname(__FILE__) . "/actions/subpermissions/delete.php");
 	elgg_register_action("group_tools/subpermissions/manage_members", dirname(__FILE__) . "/actions/subpermissions/manage_members.php");
 

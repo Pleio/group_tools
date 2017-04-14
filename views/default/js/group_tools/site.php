@@ -178,6 +178,15 @@ elgg.group_tools.add_subpermission = function(event) {
 	});
 }
 
+elgg.group_tools.edit_subpermission = function(event) {
+	event.preventDefault();
+	
+	$.fancybox({
+		href: $(this).attr("href"),
+		titleShow: false
+	});
+}
+
 elgg.group_tools.manage_subpermission_members = function(event) {
 	event.preventDefault();
 	
@@ -228,6 +237,7 @@ elgg.group_tools.init = function() {
 	// subpermission add
 	$("#group-tools-subpermissions-add").live("click", elgg.group_tools.add_subpermission);
 	$(".group-tools-subpermissions-manage-members").live("click", elgg.group_tools.manage_subpermission_members);
+	$(".group-tools-subpermissions-edit").live("click", elgg.group_tools.edit_subpermission);
 }
 
 //register init hook

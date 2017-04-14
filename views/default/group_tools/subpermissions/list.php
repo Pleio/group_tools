@@ -29,6 +29,12 @@ $members = group_tools_get_members_of_access_collection($subpermission_id);
 					));
 
 					echo elgg_view('output/url', array(
+						"text" => elgg_echo("edit"),
+						"href" => "groups/subpermissions_edit/{$group->guid}/{$subpermission_id}",
+						"class" => "elgg-button-action group-tools-button-right group-tools-subpermissions-edit"
+					));
+
+					echo elgg_view('output/url', array(
 						"text" => elgg_echo("group_tools:subpermissions:manage_members"),
 						"href" => "groups/subpermissions_manage_members/" . $group->guid . "?access_guid=" . $subpermission_id,
 						"class" => "elgg-button-action group-tools-button-right group-tools-subpermissions-manage-members"
