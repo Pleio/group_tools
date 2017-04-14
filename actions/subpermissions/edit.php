@@ -27,6 +27,11 @@ if ($group->subpermissions_enable != "yes") {
     forward(REFERER);
 }
 
+if (!$name) {
+    register_error(elgg_echo("group_tools:subpermissions:noname"));
+    forward(REFERER);
+}
+
 $subpermissions = unserialize($group->subpermissions);
 
 if (!in_array($access_guid, $subpermissions)) {
@@ -37,10 +42,7 @@ if (!in_array($access_guid, $subpermissions)) {
 $access_guid = sanitise_int($access_guid);
 $name = sanitize_string($name);
 
-$result = update_data("UPDATE {$CONFIG->dbprefix}access_collections SET name = '{$name}' WHERE id = {$access_guid}");
+update_data("UPDATE {$CONFIG->dbprefix}access_collections SET name = '{$name}' WHERE id = {$access_guid}");
 
-if ($result) {
-    system_message(elgg_echo("group_tools:subpermissions:add:created"));
-} else {
-    register_error(elgg_echo("group_tools:subpermissions:delete:cantdelete"));
-}
+system_message(elgg_echo("group_tools:subpermissions:edited"));
+forward(REFERER);

@@ -25,7 +25,7 @@ if ($group->subpermissions_enable != "yes") {
 }
 
 if (!$name) {
-	register_error(elgg_echo("group_tools:subpermissions:add:noname"));
+	register_error(elgg_echo("group_tools:subpermissions:noname"));
 	forward(REFERER);
 }
 
@@ -44,5 +44,5 @@ array_push($subpermissions, $id);
 $group->subpermissions = serialize($subpermissions);
 $group->save();
 
-system_message(elgg_echo("group_tools:subpermissions:add:created"));
+system_message(elgg_echo("group_tools:subpermissions:added"));
 forward("/groups/subpermissions/" . $group->guid);
